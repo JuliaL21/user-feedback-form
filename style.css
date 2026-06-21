@@ -1,1 +1,204 @@
+/* Reset & Base */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 16px;
+  color: #e0e0e0;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 8px;
+  color: #e94560;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  color: #a0aec0;
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+/* Card */
+.card {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 36px 40px;
+  width: 100%;
+  max-width: 520px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+
+/* Form Groups */
+.form-group {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #a0aec0;
+  margin-bottom: 6px;
+}
+
+input, textarea {
+  width: 100%;
+  background: rgba(255,255,255,0.07);
+  border: 1.5px solid rgba(255,255,255,0.15);
+  border-radius: 8px;
+  padding: 12px 14px;
+  color: #e0e0e0;
+  font-size: 0.95rem;
+  font-family: inherit;
+  transition: border-color 0.25s, box-shadow 0.25s;
+  outline: none;
+}
+
+input:focus, textarea:focus {
+  border-color: #e94560;
+  box-shadow: 0 0 0 3px rgba(233,69,96,0.2);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+/* Character Counter */
+.char-counter {
+  font-size: 0.75rem;
+  color: #718096;
+  text-align: right;
+  margin-top: 4px;
+  transition: color 0.2s;
+}
+.char-counter.warn  { color: #f6ad55; }
+.char-counter.limit { color: #e94560; }
+
+/* Tooltip */
+.tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 0;
+  background: #e94560;
+  color: #fff;
+  font-size: 0.75rem;
+  padding: 6px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.2s, transform 0.2s;
+  z-index: 10;
+}
+.tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%; left: 14px;
+  border: 5px solid transparent;
+  border-top-color: #e94560;
+}
+.tooltip.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Validation Messages */
+.error-msg {
+  font-size: 0.78rem;
+  color: #fc8181;
+  margin-top: 5px;
+  display: none;
+}
+.error-msg.show { display: block; }
+
+input.invalid, textarea.invalid {
+  border-color: #fc8181;
+  box-shadow: 0 0 0 3px rgba(252,129,129,0.2);
+}
+
+/* Submit Button */
+.btn-submit {
+  width: 100%;
+  padding: 13px;
+  background: linear-gradient(135deg, #e94560, #c0392b);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: transform 0.15s, box-shadow 0.15s;
+  margin-top: 4px;
+}
+.btn-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(233,69,96,0.45);
+}
+.btn-submit:active { transform: translateY(0); }
+
+/* Feedback Display */
+#feedback-display {
+  width: 100%;
+  max-width: 520px;
+  margin-top: 32px;
+}
+
+#feedback-display h2 {
+  font-size: 1.1rem;
+  color: #a0aec0;
+  margin-bottom: 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: 8px;
+}
+
+.feedback-entry {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-left: 4px solid #e94560;
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin-bottom: 14px;
+  animation: slideIn 0.35s ease;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.feedback-entry .fe-name    { font-weight: 700; color: #e94560; font-size: 0.95rem; }
+.feedback-entry .fe-email   { font-size: 0.78rem; color: #718096; margin-bottom: 8px; }
+.feedback-entry .fe-comment { font-size: 0.9rem; color: #cbd5e0; line-height: 1.5; }
+.feedback-entry .fe-time    { font-size: 0.72rem; color: #4a5568; margin-top: 8px; text-align: right; }
+
+/* Toast /
+#toast {
+  position: fixed;
+  bottom: 28px; right: 28px;
+  background: #38a169;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s, tran
